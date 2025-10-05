@@ -51,3 +51,25 @@ Date of finished:
 2. В результате видно, что образ `hello-world` успешно скачан и контейнер завершил работу с кодом `0`.
 
 ![docker_basic_cmds.png](docker_basic_cmds.png)
+
+
+### Шаг 5. Работа с готовыми образами (Ubuntu)
+
+1. Скачан официальный образ Ubuntu командой `docker pull ubuntu:latest`.  
+2. Контейнер запущен в интерактивном режиме (`docker run -it ubuntu bash`).  
+3. Внутри контейнера выполнена установка пакета `curl` через `apt update && apt install -y curl`.  
+4. Проверка `curl --version` подтвердила успешную установку.  
+
+![ubuntu_curl.png](ubuntu_curl.png)
+
+
+### Шаг 6. Запуск веб-сервера Nginx в контейнере
+
+1. Контейнер Nginx запущен командой:
+docker run -d -p 8080:80 –name web-server nginx:alpine
+
+2. Проверка работы в браузере по адресу [http://localhost:8080](http://localhost:8080) показала стандартную страницу “Welcome to nginx!”.  
+3. Через команду `docker logs web-server` подтверждено успешное выполнение контейнера.  
+4. Подключение к контейнеру выполнено командой `docker exec -it web-server sh`.
+
+![nginx.png](nginx.png)
