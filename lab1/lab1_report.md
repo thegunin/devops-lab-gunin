@@ -73,3 +73,27 @@ docker run -d -p 8080:80 –name web-server nginx:alpine
 4. Подключение к контейнеру выполнено командой `docker exec -it web-server sh`.
 
 ![nginx.png](nginx.png)
+
+
+### Шаг 7. Управление контейнерами
+
+1. Выполнены команды управления контейнерами:  
+   - `docker ps` — просмотр запущенных контейнеров;  
+   - `docker ps -a` — просмотр всех контейнеров;  
+   - `docker stop web-server` — остановка контейнера;  
+   - `docker start web-server` — повторный запуск;  
+   - `docker rm web-server` — удаление контейнера;  
+   - `docker rmi nginx:alpine` — удаление образа.  
+2. Все операции выполнены успешно, контейнеры корректно останавливались и удалялись.
+
+![docker_manage.png](docker_manage.png)
+
+### Шаг 8. Работа с томами (Docker Volumes)
+
+1. Создан том `my-volume` командой `docker volume create my-volume`.  
+2. Запущен контейнер с подключённым томом:  
+docker run -it –name volume-test -d -v my-volume:/data ubuntu bash
+3. Внутри контейнера создан файл `/data/test.txt` со строкой "Hello from volume".  
+4. После удаления контейнера и запуска нового с тем же томом файл сохранился, что подтверждает работу томов Docker.  
+
+![volume.png](volume.png)
