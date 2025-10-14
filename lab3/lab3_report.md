@@ -94,3 +94,25 @@ docker run -d \
 
 
   ![prometheus](lab3/screenshots/prometheus.png)
+
+
+  ---
+
+## Шаг 5. Запуск Grafana
+
+Для визуализации метрик был запущен контейнер Grafana:
+
+```bash
+docker volume create grafana-data
+
+docker run -d \
+  --name grafana \
+  --restart=unless-stopped \
+  -p 3000:3000 \
+  -v grafana-data:/var/lib/grafana \
+  -e "GF_SECURITY_ADMIN_PASSWORD=admin" \
+  grafana/grafana
+
+  Проверка работы контейнера:
+  Веб-интерфейс Grafana доступен по адресу http://localhost:3000:
+  
