@@ -8,13 +8,20 @@
 
 ---
 
-## Этап 1. Подготовка проекта
+## Введение
+Курсовая работа направлена на разработку персонального демонстрационного сайта с использованием технологии **MkDocs** и темы **Material for MkDocs**. Проект реализуется на основе вымышленного концепта кампуса Университета ИТМО в Москве и служит учебным примером построения документированных и структурированных веб-проектов.
 
-Для выполнения курсовой работы создана папка проекта `coursework` внутри репозитория.  
-Было настроено виртуальное окружение Python и установлены инструменты **MkDocs** и **Material for MkDocs**.
+---
+
+## Цель работы
+Целью данной курсовой работы является разработка статического веб-сайта, включающего информационные разделы, навигацию, брендинг и техническую документацию, а также освоение работы с MkDocs, Git и GitHub.
+
+---
+
+## Этап 1. Подготовка проекта
+Для выполнения курсовой работы создана папка проекта `coursework` внутри репозитория. Было настроено виртуальное окружение Python и установлены инструменты **MkDocs** и **Material for MkDocs**.
 
 ### Команды настройки
-
 ```bash
 python3 -m venv venv
 source venv/bin/activate
@@ -23,7 +30,6 @@ mkdocs new .
 ```
 
 ### Структура проекта
-
 ```
 coursework/
 ├── docs/
@@ -33,91 +39,110 @@ coursework/
 └── coursework_report.md
 ```
 
-### Скриншоты этапа
-
-Структура проекта после инициализации:
-
+### Скриншоты
 ![Структура проекта](screenshots/project_structure.png)
-
-Запуск локального сервера MkDocs:
-
-![MkDocs serve](screenshots/mkdocs_serve.png)
+![MkDocs локальный сервер](screenshots/mkdocs_serve.png)
 
 ---
 
 ## Этап 2. Настройка конфигурации MkDocs
+Для настройки внешнего вида и структуры сайта был изменён файл `mkdocs.yml`. Добавлена тема **Material**, настроены палитры, язык интерфейса и разделы сайта.
 
-На данном этапе был настроен сайт с использованием темы **Material**.  
-Файл `mkdocs.yml` был изменён для настройки внешнего вида и структуры сайта.
-
-### Конфигурационный файл `mkdocs.yml`
-
+### Пример конфигурации:
 ```yaml
 site_name: Кампус ИТМО в Москве
-site_description: Вымышленный учебный проект – демонстрационный сайт для курсовой работы
-site_author: Gunin Nikita
-site_url: https://thegunin.github.io/devops-lab-gunin/coursework/
-
+site_description: Вымышленный учебный проект – демонстрационный сайт
 theme:
   name: material
   language: ru
-  features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.top
-    - toc.integrate
-    - search.highlight
-    - search.share
-    - content.code.copy
-  palette:
-    scheme: default
-    primary: blue
-    accent: deep purple
-
 nav:
   - Главная: index.md
   - О проекте: about.md
   - Архитектура кампуса: architecture.md
   - Технологии: technologies.md
   - Контакты: contacts.md
-
-markdown_extensions:
-  - admonition
-  - codehilite
-  - footnotes
-  - tables
-  - toc:
-      permalink: true
-
-extra:
-  generator: false
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/thegunin
 ```
-
-### Скриншоты этапа
-
-Настройка файла `mkdocs.yml`:
-
-![mkdocs.yml конфигурация](screenshots/mkdocs_config.png)
-
-Созданные страницы сайта:
-
-![Cтраницы проекта](screenshots/mkdocs_pages.png)
 
 ---
 
-## Этап 3. Создание контента сайта
+## Этап 3. Создание контента
+Были добавлены и наполнены информационные страницы:
 
-На данном этапе была сформирована содержательная часть сайта. Созданы и наполнены основные страницы проекта с использованием технического и инженерного стиля описания.
+| Страница | Описание |
+|----------|-----------|
+| index.md | Главная страница с описанием проекта |
+| about.md | Информация о проекте |
+| architecture.md | Архитектура кампуса |
+| technologies.md | Используемые технологии |
+| contacts.md | Контактные данные |
 
-### Созданные страницы
+![Страницы контента](screenshots/mkdocs_pages.png)
 
-| Файл | Назначение |
-|------|------------|
-| `index.md` | Главная страница, вводная информация |
-| `about.md` | Описание проекта и его целей |
-| `architecture.md` | Архитектурная структура кампуса |
-| `technologies.md` | Используемые технологии |
-| `contacts.md` | Контактные данные автора |
+---
+
+## Этап 4. Добавление брендинга и логотипа
+Для придания сайту идентичности был добавлен логотип и favicon. Создана папка `images`, добавлено изображение кампуса и логотип.
+
+```yaml
+theme:
+  logo: images/itmo_campus_logo.png
+  favicon: images/itmo_campus_logo.png
+```
+
+![Логотип на сайте](screenshots/logo_in_header.png)
+
+---
+
+## Этап 5. Улучшение интерфейса
+На сайте включены удобные функции темы Material:
+- Меню навигации
+- Верхние вкладки
+- Поддержка тёмной темы
+- Поиск по сайту
+- Подсветка кода
+
+---
+
+## Этап 6. Настройка футера и социальных ссылок
+Добавлена информация об авторе и социальные ссылки в нижнюю часть сайта:
+
+```yaml
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/itmo-campus-moscow
+```
+
+![Футер сайта](screenshots/footer.png)
+
+---
+
+## Этап 7. Итоговая структура проекта
+```
+coursework/
+├── docs/
+│   ├── index.md
+│   ├── about.md
+│   ├── architecture.md
+│   ├── technologies.md
+│   ├── contacts.md
+│   └── images/
+├── mkdocs.yml
+└── screenshots/
+```
+
+---
+
+## Заключение
+В ходе выполнения курсовой работы был разработан демонстрационный веб-сайт на базе генератора документации **MkDocs** с темой **Material**. Проект показал преимущества статической генерации, простоту масштабирования и удобную структуру Markdown-документации.
+
+---
+
+## Приложения
+*Скриншоты всех страниц сайта размещены в папке `screenshots`.*
+
+![1](screenshots/1.png)
+![2](screenshots/2.png)
+![3](screenshots/3.png)
+![4](screenshots/4.png)
+![5](screenshots/2.png)
