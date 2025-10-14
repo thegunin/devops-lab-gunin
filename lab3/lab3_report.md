@@ -44,3 +44,27 @@ scrape_configs:
   - job_name: 'node-exporter'
     static_configs:
       - targets: ['node-exporter:9100']
+
+
+---
+
+## Шаг 3. Запуск Node Exporter
+
+Для сбора системных метрик был запущен контейнер `node-exporter`:
+
+```bash
+docker run -d \
+  --name node-exporter \
+  --restart=unless-stopped \
+  -p 9100:9100 \
+  -v "/proc:/host/proc:ro" \
+  -v "/sys:/host/sys:ro" \
+  -v "/:/rootfs:ro" \
+  prom/node-exporter \
+  --path.procfs=/host/proc \
+  --path.rootfs=/rootfs \
+  --path.sysfs=/host/sys \
+  --collector.filesystem.mount-points-exclude="^/(sys|proc|dev|host|etc)($$|/)"
+
+Проверка работы контейнера:
+Node Exporter отдаёт метрики по HTTP на порту 9100:
