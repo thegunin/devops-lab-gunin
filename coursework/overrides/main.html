@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+    {{ super() }}
+    <!-- ✅ Подключаем стили Material через CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mkdocs-material/9.5.1/stylesheets/main.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mkdocs-material/9.5.1/stylesheets/palette.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mkdocs-material/9.5.1/javascripts/bundle.min.js"></script>
+{% endblock %}

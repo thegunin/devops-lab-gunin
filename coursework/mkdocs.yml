@@ -19,22 +19,14 @@ theme:
     - search.share
     - content.code.copy
     - navigation.footer
-  palette:
-    - scheme: default
-      primary: custom
-      accent: custom
-      toggle:
-        icon: material/weather-night
-        name: Темная тема
-    - scheme: slate
-      primary: custom
-      accent: custom
-      toggle:
-        icon: material/weather-sunny
-        name: Светлая тема
-  font:
-    text: Roboto
-    code: Roboto Mono
+
+palette:
+  - scheme: default
+    primary: blue
+    accent: deep purple
+  - scheme: slate
+    primary: blue
+    accent: deep purple
 
 extra_css:
   - stylesheets/extra.css
@@ -55,7 +47,6 @@ markdown_extensions:
       permalink: true
 
 extra:
-  base_url: /devops-lab-gunin/coursework/
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/itmo-campus-moscow
@@ -69,9 +60,6 @@ extra_footer: >
     © 2025 ITMO Campus Moscow — учебный проект.<br>
     Создан в рамках курсовой работы по дисциплине «Introduction in Web Technologies».
   </div>
-
-repo_url: https://github.com/thegunin/devops-lab-gunin
-repo_name: GitHub
 
 plugins:
   - search
