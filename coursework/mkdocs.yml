@@ -70,3 +70,6 @@ extra_footer: >
 
 repo_url: https://github.com/thegunin/devops-lab-gunin
 repo_name: GitHub
+
+plugins:
+  - search
