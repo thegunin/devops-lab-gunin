@@ -97,7 +97,7 @@ docker run -d \
 
 Проверка Web UI Prometheus доступна по адресу `http://localhost:9090`:
 
-![prometheus_ui](screenshots/prometheus_ui.png)
+![prometheus_ui](screenshots/prometheus.png)
 
 ---
 
