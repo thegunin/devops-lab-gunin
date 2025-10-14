@@ -5,7 +5,25 @@ site_url: https://thegunin.github.io/devops-lab-gunin/coursework/
 
 theme:
   name: material
+  logo: images/itmo_campus_logo.png
+  favicon: images/itmo_campus_logo.png
   language: ru
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
   features:
     - navigation.tabs
     - navigation.sections
@@ -14,10 +32,10 @@ theme:
     - search.highlight
     - search.share
     - content.code.copy
-  palette:
-    scheme: default
-    primary: blue
-    accent: deep purple
+    - navigation.footer  
+
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Главная: index.md
@@ -39,3 +57,19 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/thegunin
+
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/itmo-campus-moscow
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/itmo_campus_moscow
+    - icon: fontawesome/solid/envelope
+      link: mailto:contact@itmo-campus.ru
+
+  extra_footer: >
+    <div style="text-align: center; font-size: 14px; padding-top: 10px;">
+      © 2025 ITMO Campus Moscow — учебный проект <br>
+      Создан в рамках курсовой работы по дисциплине "Introduction in Web Technologies"
+    </div>

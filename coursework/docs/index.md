@@ -1,6 +1,6 @@
 # Кампус ИТМО в Москве
 
-![ITMO Campus Moscow](coursework/docs/images/itmo_campus_main.png)
+![ITMO Campus Moscow](images/itmo_campus_main.png)
 
 *Визуализация концепта кампуса ИТМО в Москве (учебный проект)*
 
