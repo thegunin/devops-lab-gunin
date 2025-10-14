@@ -115,4 +115,22 @@ docker run -d \
 
   Проверка работы контейнера:
   Веб-интерфейс Grafana доступен по адресу http://localhost:3000:
-  
+
+
+  ---
+
+## Шаг 6. Подключение Prometheus как источника данных в Grafana
+
+Для подключения Prometheus к Grafana был добавлен новый Data Source:
+
+1. Открыт интерфейс Grafana по адресу `http://localhost:3000`
+2. Выбрано меню **Connections → Add new data source**
+3. Выбран источник данных **Prometheus**
+4. Указан URL подключения:
+http://host.docker.internal:9090
+
+(Адрес `localhost` не подходит, так как Grafana работает в Docker-контейнере и не может обратиться к Prometheus напрямую)
+
+5. Нажата кнопка **Save & Test** — подключение выполнено успешно ✅
+
+![grafana_prometheus_connected](screenshots/grafana_prometheus_connected.png)
