@@ -1,33 +1,15 @@
-site_url: https://thegunin.github.io/devops-lab-gunin/coursework/
-use_directory_urls: false
-
 site_name: Кампус ИТМО в Москве
 site_description: Вымышленный учебный проект – демонстрационный сайт для курсовой работы
-site_author: Gunin Nikita
+site_author: Gunin Nikita Alekseevich
 site_url: https://thegunin.github.io/devops-lab-gunin/coursework/
 use_directory_urls: false
 
 theme:
   name: material
+  custom_dir: overrides
   logo: images/itmo_campus_logo.png
   favicon: images/itmo_campus_logo.png
   language: ru
-  palette:
-    - scheme: default
-      primary: custom
-      accent: custom
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-    - scheme: slate
-      primary: custom
-      accent: custom
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
-  font:
-    text: Roboto
-    code: Roboto Mono
   features:
     - navigation.tabs
     - navigation.sections
@@ -37,6 +19,22 @@ theme:
     - search.share
     - content.code.copy
     - navigation.footer
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Темная тема
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Светлая тема
+  font:
+    text: Roboto
+    code: Roboto Mono
 
 extra_css:
   - stylesheets/extra.css
@@ -68,8 +66,8 @@ extra:
 
 extra_footer: >
   <div style="text-align: center; font-size: 14px; padding-top: 10px;">
-    © 2025 ITMO Campus Moscow — учебный проект <br>
-    Создан в рамках курсовой работы по дисциплине "Introduction in Web Technologies"
+    © 2025 ITMO Campus Moscow — учебный проект.<br>
+    Создан в рамках курсовой работы по дисциплине «Introduction in Web Technologies».
   </div>
 
 repo_url: https://github.com/thegunin/devops-lab-gunin
