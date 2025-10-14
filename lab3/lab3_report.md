@@ -67,4 +67,30 @@ docker run -d \
   --collector.filesystem.mount-points-exclude="^/(sys|proc|dev|host|etc)($$|/)"
 
 Проверка работы контейнера:
-Node Exporter отдаёт метрики по HTTP на порту 9100:
+Node Exporter отдаёт метрики по HTTP на порту 9100
+
+
+---
+
+## Шаг 4. Запуск Prometheus
+
+Prometheus используется как система мониторинга для сбора и хранения метрик.  
+Для сохранения данных Prometheus был создан Docker volume:
+
+```bash
+docker volume create prometheus-data
+
+Prometheus был запущен как Docker-контейнер с использованием предварительно созданного конфига prometheus.yml:
+
+docker run -d \
+  --name prometheus \
+  -p 9090:9090 \
+  -v $(pwd)/prometheus:/etc/prometheus \
+  prom/prometheus \
+  --config.file=/etc/prometheus/prometheus.yml
+
+  Проверка работы контейнера:
+  Веб-интерфейс Prometheus доступен по адресу http://localhost:9090, что подтверждает его успешный запуск:
+
+
+  ![prometheus](lab3/screenshots/prometheus.png)
