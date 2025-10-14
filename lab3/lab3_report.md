@@ -1,26 +1,33 @@
 # Отчёт по лабораторной работе №3
-"Мониторинг с Prometheus и Grafana"
+**Тема:** Мониторинг с Prometheus и Grafana
 
-University: [ITMO University](https://itmo.ru/ru/)  
-Faculty: FTMI  
-Course: [introduction-in-web-tech](https://itmo-ict-faculty.github.io/introduction-in-web-tech)  
-Year: 2025/2026  
-Group: U4225  
-Author: Gunin Nikita Alekseevich  
-Lab: Lab3  
-Date of create:  __.__.2025  
-Date of finish:  
+**University:** ITMO University  
+**Faculty:** FTMI  
+**Course:** Introduction in Web Technologies  
+**Year:** 2025/2026  
+**Group:** U4225  
+**Author:** Gunin Nikita Alekseevich  
+**Lab:** №3  
+**Date of create:** 10.10.2025  
+**Date of finish:** 14.10.2025  
 
 ---
 
-## Шаг 1. Подготовка проекта
+## Цель работы
+Изучить инструменты мониторинга Prometheus и Grafana, настроить сбор и визуализацию системных метрик при помощи Docker-контейнеров.
 
-Создана структура для лабораторной работы №3 в папке `lab3`, а также файл отчёта и директория для скриншотов.
+---
 
+## Шаг 1. Подготовка структуры проекта
+
+Создана папка `lab3` в репозитории с подпапкой `screenshots` для скриншотов и файлом отчёта:
+
+```
 devops-lab-gunin/
-├── lab3/
-│   ├── lab3_report.md
-│   └── screenshots/
+└── lab3/
+    ├── lab3_report.md
+    └── screenshots/
+```
 
 ![project_structure](screenshots/project_structure.png)
 
@@ -28,9 +35,7 @@ devops-lab-gunin/
 
 ## Шаг 2. Создание конфигурации Prometheus
 
-Для настройки мониторинга был создан файл конфигурации `prometheus.yml`, в котором указаны цели (targets) для сбора метрик:
-- сам Prometheus (порт 9090)
-- Node Exporter (порт 9100)
+Создан файл `prometheus/prometheus.yml`:
 
 ```yaml
 global:
@@ -44,13 +49,13 @@ scrape_configs:
   - job_name: 'node-exporter'
     static_configs:
       - targets: ['node-exporter:9100']
-
+```
 
 ---
 
 ## Шаг 3. Запуск Node Exporter
 
-Для сбора системных метрик был запущен контейнер `node-exporter`:
+Node Exporter собирает системные метрики (CPU, память, файловая система). Команда запуска:
 
 ```bash
 docker run -d \
@@ -65,42 +70,40 @@ docker run -d \
   --path.rootfs=/rootfs \
   --path.sysfs=/host/sys \
   --collector.filesystem.mount-points-exclude="^/(sys|proc|dev|host|etc)($$|/)"
+```
 
-Проверка работы контейнера:
-Node Exporter отдаёт метрики по HTTP на порту 9100
-
+![node_exporter_running](screenshots/node_exporter_running.png)
 
 ---
 
 ## Шаг 4. Запуск Prometheus
 
-Prometheus используется как система мониторинга для сбора и хранения метрик.  
-Для сохранения данных Prometheus был создан Docker volume:
+Создан Docker volume:
 
 ```bash
 docker volume create prometheus-data
+```
 
-Prometheus был запущен как Docker-контейнер с использованием предварительно созданного конфига prometheus.yml:
+Запущен Prometheus:
 
+```bash
 docker run -d \
   --name prometheus \
   -p 9090:9090 \
   -v $(pwd)/prometheus:/etc/prometheus \
   prom/prometheus \
   --config.file=/etc/prometheus/prometheus.yml
+```
 
-  Проверка работы контейнера:
-  Веб-интерфейс Prometheus доступен по адресу http://localhost:9090, что подтверждает его успешный запуск:
+Проверка Web UI Prometheus доступна по адресу `http://localhost:9090`:
 
+![prometheus_ui](screenshots/prometheus_ui.png)
 
-  ![prometheus](lab3/screenshots/prometheus.png)
-
-
-  ---
+---
 
 ## Шаг 5. Запуск Grafana
 
-Для визуализации метрик был запущен контейнер Grafana:
+Запущена Grafana в Docker:
 
 ```bash
 docker volume create grafana-data
@@ -112,43 +115,48 @@ docker run -d \
   -v grafana-data:/var/lib/grafana \
   -e "GF_SECURITY_ADMIN_PASSWORD=admin" \
   grafana/grafana
+```
 
-  Проверка работы контейнера:
-  Веб-интерфейс Grafana доступен по адресу http://localhost:3000:
+![grafana_running](screenshots/grafana_running.png)
 
+---
 
-  ---
+## Шаг 6. Подключение Prometheus к Grafana
 
-## Шаг 6. Подключение Prometheus как источника данных в Grafana
+Prometheus подключён как источник данных (Data Source) в Grafana:
 
-Для подключения Prometheus к Grafana был добавлен новый Data Source:
-
-1. Открыт интерфейс Grafana по адресу `http://localhost:3000`
-2. Выбрано меню **Connections → Add new data source**
-3. Выбран источник данных **Prometheus**
-4. Указан URL подключения:
-http://host.docker.internal:9090
-
-(Адрес `localhost` не подходит, так как Grafana работает в Docker-контейнере и не может обратиться к Prometheus напрямую)
-
-5. Нажата кнопка **Save & Test** — подключение выполнено успешно ✅
+- Открыто меню: **Connections → Data Sources → Add new data source**
+- Тип: **Prometheus**
+- URL:
+  ```
+  http://host.docker.internal:9090
+  ```
+- Результат: **Data source is working ✅**
 
 ![grafana_prometheus_connected](screenshots/grafana_prometheus_connected.png)
-
 
 ---
 
 ## Шаг 7. Создание дашборда в Grafana
 
-Для визуализации данных был создан новый дашборд в Grafana с тремя панелями:
+Создан дашборд с тремя панелями:
 
-| Метрика | PromQL запрос |
-|----------|---------------|
-| CPU Usage (%) | `100 - (avg by (cpu) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)` |
+| Метрика | Запрос (PromQL) |
+|---------|------------------|
+| CPU Usage (%) | `100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)` |
 | Memory Usage | `node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes` |
-| Disk Usage | `node_filesystem_size_bytes{mountpoint="/"} - node_filesystem_free_bytes{mountpoint="/"}` |
+| Disk Usage (GB) | `(node_filesystem_size_bytes - node_filesystem_free_bytes) / 1024 / 1024 / 1024` |
 
-Пример визуализации:
+![grafana_dashboard_full](screenshots/grafana_dashboard_full.png)
 
-### Итоговый дашборд
-![full_dashboard](screenshots/grafana_dashboard_full.png)
+---
+
+## Вывод
+
+В ходе выполнения работы была развернута система мониторинга на базе **Prometheus** и **Grafana**. Настроен сбор метрик при помощи **Node Exporter**, выполнена контейнеризация с использованием **Docker**, а также построены графики производительности системы (CPU, память, диск).
+
+Практически закреплены навыки DevOps: мониторинг, Docker, визуализация данных.
+
+---
+
+✅ *Доказательства выполнения лабораторной работы представлены скриншотами и историей репозитория GitHub.*
