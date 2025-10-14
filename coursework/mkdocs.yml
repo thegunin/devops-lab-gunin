@@ -1,1 +1,41 @@
-site_name: My Docs
+site_name: Кампус ИТМО в Москве
+site_description: Вымышленный учебный проект – демонстрационный сайт для курсовой работы
+site_author: Gunin Nikita
+site_url: https://thegunin.github.io/devops-lab-gunin/coursework/
+
+theme:
+  name: material
+  language: ru
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - toc.integrate
+    - search.highlight
+    - search.share
+    - content.code.copy
+  palette:
+    scheme: default
+    primary: blue
+    accent: deep purple
+
+nav:
+  - Главная: index.md
+  - О проекте: about.md
+  - Архитектура кампуса: architecture.md
+  - Технологии: technologies.md
+  - Контакты: contacts.md
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/thegunin
