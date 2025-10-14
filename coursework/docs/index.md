@@ -15,3 +15,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
     docs/
         index.md  # The documentation homepage.
         ...       # Other markdown pages, images and other files.
+
+
+!!! warning "Важно"
+    Данный сайт является **учебным проектом** и описывает **вымышленный проект Кампуса ИТМО в Москве**.
