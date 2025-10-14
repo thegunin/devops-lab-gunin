@@ -134,3 +134,21 @@ http://host.docker.internal:9090
 5. Нажата кнопка **Save & Test** — подключение выполнено успешно ✅
 
 ![grafana_prometheus_connected](screenshots/grafana_prometheus_connected.png)
+
+
+---
+
+## Шаг 7. Создание дашборда в Grafana
+
+Для визуализации данных был создан новый дашборд в Grafana с тремя панелями:
+
+| Метрика | PromQL запрос |
+|----------|---------------|
+| CPU Usage (%) | `100 - (avg by (cpu) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)` |
+| Memory Usage | `node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes` |
+| Disk Usage | `node_filesystem_size_bytes{mountpoint="/"} - node_filesystem_free_bytes{mountpoint="/"}` |
+
+Пример визуализации:
+
+### Итоговый дашборд
+![full_dashboard](screenshots/grafana_dashboard_full.png)
