@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://thegunin.github.io/devops-lab-gunin/coursework/</loc>
+         <loc>https://thegunin.github.io/devops-lab-gunin/coursework/index.html</loc>
          <lastmod>2025-10-14</lastmod>
     </url>
     <url>
-         <loc>https://thegunin.github.io/devops-lab-gunin/coursework/about/</loc>
+         <loc>https://thegunin.github.io/devops-lab-gunin/coursework/about.html</loc>
          <lastmod>2025-10-14</lastmod>
     </url>
     <url>
-         <loc>https://thegunin.github.io/devops-lab-gunin/coursework/architecture/</loc>
+         <loc>https://thegunin.github.io/devops-lab-gunin/coursework/architecture.html</loc>
          <lastmod>2025-10-14</lastmod>
     </url>
     <url>
-         <loc>https://thegunin.github.io/devops-lab-gunin/coursework/contacts/</loc>
+         <loc>https://thegunin.github.io/devops-lab-gunin/coursework/contacts.html</loc>
          <lastmod>2025-10-14</lastmod>
     </url>
     <url>
-         <loc>https://thegunin.github.io/devops-lab-gunin/coursework/technologies/</loc>
+         <loc>https://thegunin.github.io/devops-lab-gunin/coursework/technologies.html</loc>
          <lastmod>2025-10-14</lastmod>
     </url>
 </urlset>

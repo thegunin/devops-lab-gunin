@@ -2,6 +2,7 @@ site_name: Кампус ИТМО в Москве
 site_description: Вымышленный учебный проект – демонстрационный сайт для курсовой работы
 site_author: Gunin Nikita
 site_url: https://thegunin.github.io/devops-lab-gunin/coursework/
+use_directory_urls: false
 
 theme:
   name: material
@@ -32,7 +33,7 @@ theme:
     - search.highlight
     - search.share
     - content.code.copy
-    - navigation.footer  
+    - navigation.footer
 
 extra_css:
   - stylesheets/extra.css
@@ -53,13 +54,6 @@ markdown_extensions:
       permalink: true
 
 extra:
-  generator: false
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/thegunin
-
-
-extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/itmo-campus-moscow
@@ -68,15 +62,11 @@ extra:
     - icon: fontawesome/solid/envelope
       link: mailto:contact@itmo-campus.ru
 
-  extra_footer: >
-    <div style="text-align: center; font-size: 14px; padding-top: 10px;">
-      © 2025 ITMO Campus Moscow — учебный проект <br>
-      Создан в рамках курсовой работы по дисциплине "Introduction in Web Technologies"
-    </div>
-
+extra_footer: >
+  <div style="text-align: center; font-size: 14px; padding-top: 10px;">
+    © 2025 ITMO Campus Moscow — учебный проект <br>
+    Создан в рамках курсовой работы по дисциплине "Introduction in Web Technologies"
+  </div>
 
 repo_url: https://github.com/thegunin/devops-lab-gunin
 repo_name: GitHub
-
-site_url: https://thegunin.github.io/devops-lab-gunin/coursework/
-use_directory_urls: false
