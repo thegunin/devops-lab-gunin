@@ -77,3 +77,6 @@ extra:
 
 repo_url: https://github.com/thegunin/devops-lab-gunin
 repo_name: GitHub
+
+site_url: https://thegunin.github.io/devops-lab-gunin/coursework/
+use_directory_urls: false
